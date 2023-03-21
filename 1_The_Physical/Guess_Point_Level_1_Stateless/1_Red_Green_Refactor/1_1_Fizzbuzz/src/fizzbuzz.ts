@@ -6,7 +6,7 @@
  *
  * @example For input [1, 3, 5, 8, 15] the output is ['1', 'Fizz', 'Buzz', '8', 'FizzBuzz']
  */
-export function fizzbuzz(num: number) {
+export function fizzbuzz(num: number): string {
   if (num < 1 || num > 100) {
     throw new Error("number must be in the range [1, 100]");
   }

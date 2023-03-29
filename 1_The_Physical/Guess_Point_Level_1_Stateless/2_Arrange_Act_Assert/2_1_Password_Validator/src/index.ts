@@ -4,26 +4,19 @@ interface ValidationResponse {
 }
 
 export const validatePassword = (password: string): ValidationResponse => {
+  const errors = [];
   if (password.length < 5 || password.length > 15) {
-    return {
-      valid: false,
-      errors: ["Password must be between 5 and 15 characters"],
-    };
+    errors.push("Password must be between 5 and 15 characters");
   }
   if (!/\d/.test(password)) {
-    return {
-      valid: false,
-      errors: ["Password must contain at least one digit"],
-    };
+    errors.push("Password must contain at least one digit");
   }
   if (!/[A-Z]/.test(password)) {
-    return {
-      valid: false,
-      errors: ["Password must contain at least one uppercase letter"],
-    };
+    errors.push("Password must contain at least one uppercase letter");
   }
+
   return {
-    valid: true,
-    errors: [],
+    valid: errors.length === 0,
+    errors,
   };
 };

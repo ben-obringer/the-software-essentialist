@@ -34,4 +34,15 @@ describe("password validator", () => {
       errors: ["Password must contain at least one uppercase letter"],
     });
   });
+
+  it("returns multiple errors for passwords that fail multiple rules", () => {
+    expect(validatePassword("")).toEqual({
+      valid: false,
+      errors: [
+        "Password must be between 5 and 15 characters",
+        "Password must contain at least one digit",
+        "Password must contain at least one uppercase letter",
+      ],
+    });
+  });
 });

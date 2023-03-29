@@ -2,6 +2,7 @@ interface ValidationResponse {
   valid: boolean;
   errors: string[];
 }
+
 export const validatePassword = (password: string): ValidationResponse => {
   if (password.length < 5 || password.length > 15) {
     return {
@@ -13,6 +14,12 @@ export const validatePassword = (password: string): ValidationResponse => {
     return {
       valid: false,
       errors: ["Password must contain at least one digit"],
+    };
+  }
+  if (!/[A-Z]/.test(password)) {
+    return {
+      valid: false,
+      errors: ["Password must contain at least one uppercase letter"],
     };
   }
   return {

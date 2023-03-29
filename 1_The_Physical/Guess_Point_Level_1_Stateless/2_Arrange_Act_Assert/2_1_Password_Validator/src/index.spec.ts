@@ -45,4 +45,11 @@ describe("password validator", () => {
       ],
     });
   });
+
+  it("returns true with no errors for passwords that pass all rules", () => {
+    expect(validatePassword("Password1")).toEqual({
+      valid: true,
+      errors: [],
+    });
+  });
 });

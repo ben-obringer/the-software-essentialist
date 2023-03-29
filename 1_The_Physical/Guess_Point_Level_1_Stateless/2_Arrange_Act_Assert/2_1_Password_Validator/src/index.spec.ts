@@ -20,4 +20,11 @@ describe("password validator", () => {
       });
     }
   );
+
+  it("returns false with errors for passwords without a digit", () => {
+    expect(validatePassword("password")).toEqual({
+      valid: false,
+      errors: ["Password must contain at least one digit"],
+    });
+  });
 });

@@ -7,4 +7,11 @@ describe("password validator", () => {
       errors: ["Password must be between 5 and 15 characters"],
     });
   });
+
+  it("returns false with errors for passwords greater than 15 chars", () => {
+    expect(validatePassword("thisissixteencha")).toEqual({
+      valid: false,
+      errors: ["Password must be between 5 and 15 characters"],
+    });
+  });
 });

@@ -3,7 +3,7 @@ interface ValidationResponse {
   errors: string[];
 }
 export const validatePassword = (password: string): ValidationResponse => {
-  if (password.length < 5) {
+  if (password.length < 5 || password.length > 15) {
     return {
       valid: false,
       errors: ["Password must be between 5 and 15 characters"],

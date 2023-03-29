@@ -1,22 +1,39 @@
+type ErrorMessage = string;
 interface ValidationResponse {
   valid: boolean;
-  errors: string[];
+  errors: ErrorMessage[];
+}
+
+interface Rule {
+  check: (password: string) => boolean;
+  errorMessage: ErrorMessage;
 }
 
 export const validatePassword = (password: string): ValidationResponse => {
-  const errors = [];
-  if (password.length < 5 || password.length > 15) {
-    errors.push("Password must be between 5 and 15 characters");
-  }
-  if (!/\d/.test(password)) {
-    errors.push("Password must contain at least one digit");
-  }
-  if (!/[A-Z]/.test(password)) {
-    errors.push("Password must contain at least one uppercase letter");
-  }
+  const rules: Rule[] = [
+    {
+      check: (password: string) =>
+        password.length >= 5 && password.length <= 15,
+      errorMessage: "Password must be between 5 and 15 characters",
+    },
+    {
+      check: (password: string) => /\d/.test(password),
+      errorMessage: "Password must contain at least one digit",
+    },
+    {
+      check: (password: string) => /[A-Z]/.test(password),
+      errorMessage: "Password must contain at least one uppercase letter",
+    },
+  ];
 
+  const errors = checkForErrors(password, rules);
   return {
     valid: errors.length === 0,
     errors,
   };
 };
+
+function checkForErrors(password: string, rules: Rule[]): ErrorMessage[] {
+  const brokenRules = rules.filter((rule) => !rule.check(password));
+  return brokenRules.map((rule) => rule.errorMessage);
+}

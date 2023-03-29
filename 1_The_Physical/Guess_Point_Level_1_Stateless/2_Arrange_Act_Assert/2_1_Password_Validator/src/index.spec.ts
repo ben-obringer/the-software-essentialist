@@ -27,4 +27,11 @@ describe("password validator", () => {
       errors: ["Password must contain at least one digit"],
     });
   });
+
+  it("returns false with errors for passwords without an uppercase letter", () => {
+    expect(validatePassword("password1")).toEqual({
+      valid: false,
+      errors: ["Password must contain at least one uppercase letter"],
+    });
+  });
 });

@@ -1,7 +1,7 @@
 import { validatePassword } from "./";
 
 describe("password validator", () => {
-  test.each([["four"], [""]])(
+  test.each([["4ouR"], ["1P"]])(
     `returns false with errors for passwords less than 5 chars`,
     (password) => {
       expect(validatePassword(password)).toEqual({
@@ -11,7 +11,7 @@ describe("password validator", () => {
     }
   );
 
-  test.each([["thisissixteencha"], ["thisissixteenchathisissixteencha"]])(
+  test.each([["thisissixteencH3"], ["thisissixteenchathisissixteencH3"]])(
     `returns false with errors for passwords greater than 15 chars`,
     (password) => {
       expect(validatePassword(password)).toEqual({
@@ -22,7 +22,7 @@ describe("password validator", () => {
   );
 
   it("returns false with errors for passwords without a digit", () => {
-    expect(validatePassword("password")).toEqual({
+    expect(validatePassword("passworD")).toEqual({
       valid: false,
       errors: ["Password must contain at least one digit"],
     });

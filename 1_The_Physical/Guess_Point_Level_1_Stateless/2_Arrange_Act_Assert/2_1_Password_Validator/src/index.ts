@@ -9,6 +9,12 @@ export const validatePassword = (password: string): ValidationResponse => {
       errors: ["Password must be between 5 and 15 characters"],
     };
   }
+  if (!/\d/.test(password)) {
+    return {
+      valid: false,
+      errors: ["Password must contain at least one digit"],
+    };
+  }
   return {
     valid: true,
     errors: [],

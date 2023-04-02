@@ -1,11 +1,15 @@
 interface Stats {
-  min: number | null;
+  min: number;
 }
 
 export function calcStats(seq: number[]): Stats {
-  let min = null;
+  if (seq.length === 0) {
+    throw new Error("input must not be empty");
+  }
+
+  let min = seq[0];
   for (const int of seq) {
-    if (min === null || int < min) {
+    if (int < min) {
       min = int;
     }
   }

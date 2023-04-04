@@ -31,3 +31,17 @@ To run the tests and have them reload when you save, run the following command:
 ```bash
 npm run test:dev
 ```
+
+## Facts
+Should determine minimum value for a sequence of integers
+  - Works for sequences that contain negative numbers
+  - Works for sequences that contain positive numbers
+  - Works for sequences that contain both positive and negative numbers
+  - Works for sequences that contain zero and negative numbers
+  - Works for sequences that contain zero and positive numbers
+  - Works for sequences that contain zero, positive and negative numbers
+  - Works for sequences that contain one element
+Should determine maximum value
+Should determine number of elements in the sequence
+Should determine average value
+Should throw an error if the sequence is empty

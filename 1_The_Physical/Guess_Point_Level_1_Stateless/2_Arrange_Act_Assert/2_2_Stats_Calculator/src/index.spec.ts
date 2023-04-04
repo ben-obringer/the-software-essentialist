@@ -5,43 +5,32 @@ describe("stats calculator", () => {
     expect(() => calcStats([])).toThrowError("input must not be empty");
   });
 
-  it("determines min is 1 for sequences that only contain one number like [1]", () => {
-    const stats = calcStats([1]);
-    expect(stats.min).toBe(1);
-  });
-
-  it("determines min is 0 for sequences that only contain zero", () => {
-    const stats = calcStats([0]);
-    expect(stats.min).toBe(0);
-  });
-
-  it("determines min is -1 for sequence of negative numbers like [-2, -1]", () => {
-    const stats = calcStats([-2, -1]);
-    expect(stats.min).toBe(-2);
-  });
-
-  it("determines min is 1 for sequence of positive numbers like [1, 2]", () => {
-    const stats = calcStats([1, 2]);
-    expect(stats.min).toBe(1);
-  });
-
-  it("determines min is -1 for sequences with positive and negative numbers [-1, 1]", () => {
-    const stats = calcStats([-1, 1]);
-    expect(stats.min).toBe(-1);
-  });
-
-  it("determines min is -1 for sequences with zero and negative numbers like [-1, 0]", () => {
-    const stats = calcStats([-1, 0]);
-    expect(stats.min).toBe(-1);
-  });
-
-  it("determines min is 0 for sequences with zero and positive numbers like [0,1]", () => {
-    const stats = calcStats([0, 1]);
-    expect(stats.min).toBe(0);
-  });
-
-  it("determines min is 0 for sequences with negative numbers, zero and positive numbers like [-1, 0, 1]", () => {
-    const stats = calcStats([-1, 0, 1]);
-    expect(stats.min).toBe(-1);
-  });
+  test.each([
+    { arr: [0, 0], expected: 0, arrDesc: "of zeros" },
+    { arr: [-2, -1], expected: -2, arrDesc: "of negative numbers" },
+    { arr: [1, 2], expected: 1, arrDesc: "of positive numbers" },
+    {
+      arr: [-1, 1],
+      expected: -1,
+      arrDesc: "with positive and negative numbers",
+    },
+    { arr: [-1, 0], expected: -1, arrDesc: "with zero and negative numbers" },
+    { arr: [0, 1], expected: 0, arrDesc: "with zero and positive numbers" },
+    {
+      arr: [-1, 0, 1],
+      expected: -1,
+      arrDesc: "with negative numbers, zero and positive numbers",
+    },
+    {
+      arr: [1],
+      expected: 1,
+      arrDesc: "with only one number",
+    },
+  ])(
+    "determines min is $expected for sequence $arrDesc like $arr",
+    ({ arr, expected }) => {
+      const stats = calcStats(arr);
+      expect(stats.min).toBe(expected);
+    }
+  );
 });

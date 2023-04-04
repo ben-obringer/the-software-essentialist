@@ -52,5 +52,8 @@ Should determine maximum value
   - Works for sequences that contain zero, positive and negative numbers
   - Works for sequences that contain one element
 Should determine number of elements in the sequence
+  - Works for sequences that contain one element
+  - Works for sequences that contain two elements
+  - Works for sequences that contain three elements
 Should determine average value
 Should throw an error if the sequence is empty

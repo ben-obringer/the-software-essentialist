@@ -1,4 +1,5 @@
 interface Stats {
+  count: number;
   max: number;
   min: number;
 }
@@ -10,7 +11,9 @@ export function calcStats(arr: number[]): Stats {
 
   let min = arr[0];
   let max = arr[0];
+  let count = 0;
   for (const int of arr) {
+    count += 1;
     if (int < min) {
       min = int;
     }
@@ -20,6 +23,7 @@ export function calcStats(arr: number[]): Stats {
   }
 
   return {
+    count,
     max,
     min,
   };

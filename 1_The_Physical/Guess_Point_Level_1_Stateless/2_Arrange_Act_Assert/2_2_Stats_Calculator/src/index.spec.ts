@@ -62,4 +62,16 @@ describe("stats calculator", () => {
       expect(stats.max).toBe(expected);
     }
   );
+
+  test.each([
+    { arr: [0], expected: 1, arrDesc: "one number" },
+    { arr: [0, 1], expected: 2, arrDesc: "two numbers" },
+    { arr: [0, 1, 2], expected: 3, arrDesc: "three numbers" },
+  ])(
+    "determines count is $expected for arrays that contain $arrDesc like $arr",
+    ({ arr, expected }) => {
+      const stats = calcStats(arr);
+      expect(stats.count).toBe(expected);
+    }
+  );
 });

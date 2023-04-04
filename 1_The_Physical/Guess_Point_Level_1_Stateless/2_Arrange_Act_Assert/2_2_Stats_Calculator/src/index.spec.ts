@@ -27,7 +27,7 @@ describe("stats calculator", () => {
       arrDesc: "with only one number",
     },
   ])(
-    "determines min is $expected for sequence $arrDesc like $arr",
+    "determines min is $expected for array $arrDesc like $arr",
     ({ arr, expected }) => {
       const stats = calcStats(arr);
       expect(stats.min).toBe(expected);
@@ -56,7 +56,7 @@ describe("stats calculator", () => {
       arrDesc: "with only one number",
     },
   ])(
-    "determines max is $expected for sequence $arrDesc like $arr",
+    "determines max is $expected for array $arrDesc like $arr",
     ({ arr, expected }) => {
       const stats = calcStats(arr);
       expect(stats.max).toBe(expected);

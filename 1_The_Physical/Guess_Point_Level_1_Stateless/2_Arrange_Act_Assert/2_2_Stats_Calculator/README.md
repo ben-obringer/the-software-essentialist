@@ -56,4 +56,12 @@ Should determine number of elements in the sequence
   - Works for sequences that contain two elements
   - Works for sequences that contain three elements
 Should determine average value
+  - Works for sequences that contain one element whose sum is zero
+  - Works for sequences that contain one element whose sum is negative
+  - Works for sequences that contain one element whose sum is positive
+  - Works for sequences that contain elements whose sum is zero
+  - Works for sequences that contain elements whose sum is negative and average is an integer
+  - Works for sequences that contain elements whose sum is negative and average is a decimal
+  - Works for sequences that contain elements whose sum is positive and average is an integer
+  - Works for sequences that contain elements whose sum is positive and average is a decimal
 Should throw an error if the sequence is empty

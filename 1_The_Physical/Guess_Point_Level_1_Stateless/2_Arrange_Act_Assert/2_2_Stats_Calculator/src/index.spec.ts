@@ -74,4 +74,39 @@ describe("stats calculator", () => {
       expect(stats.count).toBe(expected);
     }
   );
+
+  test.each([
+    { arr: [0], expected: 0, arrDesc: "one number whose sum is 0" },
+    { arr: [1], expected: 1, arrDesc: "one number whose sum is positive" },
+    { arr: [-1], expected: -1, arrDesc: "one number whose sum is negative" },
+    { arr: [-1, 1], expected: 0, arrDesc: "two numbers whose sum is 0" },
+    {
+      arr: [4, 2],
+      expected: 3,
+      arrDesc: "two numbers whose sum is positive and average is an integer",
+    },
+    {
+      arr: [4, 3],
+      expected: 3.5,
+      arrDesc:
+        "two numbers whose sum is positive and average is not an integer",
+    },
+    {
+      arr: [-4, -2],
+      expected: -3,
+      arrDesc: "two numbers whose sum is negative and average is an integer",
+    },
+    {
+      arr: [-4, -3],
+      expected: -3.5,
+      arrDesc:
+        "two numbers whose sum is negative and average is not an integer",
+    },
+  ])(
+    "determines average is $expected for arrays that contain $arrDesc like $arr",
+    ({ arr, expected }) => {
+      const stats = calcStats(arr);
+      expect(stats.average).toBe(expected);
+    }
+  );
 });

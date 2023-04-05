@@ -18,8 +18,7 @@ export function calcStats(arr: number[]): Stats {
     count += 1;
     if (int < min) {
       min = int;
-    }
-    if (int > max) {
+    } else if (int > max) {
       max = int;
     }
     sum += int;
